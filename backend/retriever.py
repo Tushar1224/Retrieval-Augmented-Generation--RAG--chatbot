@@ -4,10 +4,13 @@ import faiss
 import pickle
 from sentence_transformers import SentenceTransformer
 import numpy as np
+import os
 
 # Load FAISS index and documents
-faiss_index = faiss.read_index("C:/Users/tusha/Downloads/RAG_project/vector_store.faiss")
-with open("C:\\Users\\tusha\\Downloads\\RAG_project\\documents.pkl", "rb") as f:
+SOURCE_FOLDER = str(os.getcwd())
+print(os.path.join(SOURCE_FOLDER, "vector_store.faiss"))
+faiss_index = faiss.read_index(os.path.join(SOURCE_FOLDER, "vector_store.faiss"))
+with open(os.path.join(SOURCE_FOLDER, "documents.pkl"), "rb") as f:
     documents = pickle.load(f)
 
 # Load embedding model

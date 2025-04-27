@@ -16,7 +16,7 @@ text_splitter = RecursiveCharacterTextSplitter(
 )
 
 # Directories
-SOURCE_FOLDER = "C:\\Users\\tusha\\Downloads\\RAG_project\\backend\\data"  # Assuming your docs are inside /data folder
+SOURCE_FOLDER = str(os.getcwd())+"\data"  # Assuming your docs are inside /data folder
 DOCS = []
 CHUNKS = []
 
