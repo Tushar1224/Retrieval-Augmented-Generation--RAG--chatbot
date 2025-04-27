@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+faiss-cpu
+sentence-transformers
+langchain
+google-generativeai
+python-dotenv
+docx2txt
+PyMuPDF
