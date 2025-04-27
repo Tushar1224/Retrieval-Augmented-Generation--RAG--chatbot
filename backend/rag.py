@@ -16,21 +16,29 @@ genai.configure(api_key="AIzaSyAJDOsHJoAYSQRyFFcT9eEYQmv8Vn7zKWY")
 def generate_answer(user_query):
     print("Generating answer")
     retrieved_docs = retrieve_docs(user_query)
-    
     if not retrieved_docs:
         return "I don't know."
-    
+    for i in retrieved_docs:
+        print(i)
     context = "\n\n".join(retrieved_docs)
+    print(context)
     prompt = f"""
-You are a helpful support assistant. Answer based ONLY on the context provided.
+    You are a helpful support assistant.
 
-Context:
-{context}
+    You have access to internal document information (loaded from company documents).
 
-Question: {user_query}
+    Rules:
+    - Answer the user's question based ONLY on the provided similar context from documents.
+    - Always answer briefly and accurately.
 
-If the answer is not in the context, reply "I don't know."
-"""
+    Context from Documents:
+    {context}
+
+    User's Question:
+    {user_query}
+
+    Answer:
+    """
     model = genai.GenerativeModel(model_name="models/gemini-1.5-pro")
     response = model.generate_content(prompt)
     return response.text

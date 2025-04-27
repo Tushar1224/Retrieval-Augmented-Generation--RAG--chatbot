@@ -19,6 +19,7 @@ embedder = SentenceTransformer('all-MiniLM-L6-v2')
 def retrieve_docs(query, top_k=3):
     print("Retrieving documents")
     query_embedding = embedder.encode([query])
+    print(query_embedding)
     D, I = faiss_index.search(np.array(query_embedding), top_k)
     
     results = []
